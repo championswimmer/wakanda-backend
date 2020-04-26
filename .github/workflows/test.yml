@@ -20,3 +20,5 @@ jobs:
       - run: npm run test:cov --if-present
         env:
           CI: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
