@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common';
 import { SuperheroController } from './superhero.controller';
 import { SuperheroService } from './superhero.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SuperheroRepository } from './superhero.repository';
+import { Superhero } from './superhero.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([SuperheroRepository])],
+  imports: [TypeOrmModule.forFeature([Superhero])],
   controllers: [SuperheroController],
-  providers: [SuperheroService]
+  providers: [SuperheroService],
 })
-export class SuperheroModule {}
+export class SuperheroModule {
+}

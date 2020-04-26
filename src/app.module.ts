@@ -1,11 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Inject, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-import { SuperheroService } from './superhero/superhero.service';
-import { SuperheroController } from './superhero/superhero.controller';
 import { SuperheroModule } from './superhero/superhero.module';
+import { Superhero } from './superhero/superhero.entity';
 
 @Module({
   imports: [TypeOrmModule.forRootAsync({
@@ -16,14 +15,15 @@ import { SuperheroModule } from './superhero/superhero.module';
       username: 'blackpanther',
       password: 'wakandaforever',
       database: 'wakandadb',
-      entities: [],
+      entities: [Superhero],
       synchronize: true,
-      autoLoadEntities: true
-    })
+      autoLoadEntities: true,
+    }),
   }), SuperheroModule],
-  controllers: [AppController, SuperheroController],
-  providers: [AppService, SuperheroService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {
-  constructor(private connection: Connection) { }
+  @Inject()
+  private connection: Connection
 }

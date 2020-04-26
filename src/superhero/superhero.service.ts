@@ -5,8 +5,10 @@ import { Superhero } from './superhero.entity';
 
 @Injectable()
 export class SuperheroService {
-  constructor(
-    @InjectRepository(Superhero)
-    private superheroRepository: SuperheroRepository
-  ) {}
+  @InjectRepository(Superhero)
+  private superheroRepository: SuperheroRepository;
+
+  async findAll() {
+    return this.superheroRepository.find();
+  }
 }
