@@ -11,4 +11,8 @@ export class SuperheroService {
   async findAll() {
     return this.superheroRepository.find();
   }
+
+  async create(superhero: Superhero) {
+    return this.superheroRepository.save(superhero)
+  }
 }
